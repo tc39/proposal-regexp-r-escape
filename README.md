@@ -6,7 +6,7 @@
 <!--#region:status-->
 ## Status
 
-**Stage:** 0  
+**Stage:** 1  
 **Champion:** Ron Buckton ([@rbuckton](https://github.com/rbuckton))  
 
 _For detailed status of this proposal see [TODO](#todo), below._  
@@ -24,7 +24,7 @@ _For detailed status of this proposal see [TODO](#todo), below._
 > NOTE: See https://github.com/rbuckton/proposal-regexp-features for an overview of
 > how this proposal fits into other possible future features for Regular Expressions.
 
-The `\R` escape sequence matches the various set of code points that match a line terminator in UTS18, which can be difficult to write correctly.
+The `\R` escape sequence matches the various sets of code points that match a unicode line terminator, which can be difficult to write correctly.
 
 <!--#endregion:motivations-->
 
@@ -57,20 +57,14 @@ See https://rbuckton.github.io/regexp-features/features/line-endings-escape.html
 <!--#region:semantics-->
 # Semantics
 
-- In `u` mode, `\R` is equivalent to the following pattern (except that a failed match performs no backtracking):
+- In `u` or `v` mode, `\R` is roughly equivalent to the following pattern:
   ```re
-  (?:\r\n?|[\x0A-\x0C\x85\u{2028}\u{2029}])
+  (?>\r\n?|[\x0A-\x0C\x85\u{2028}\u{2029}])
   ```
-  - Does not treat CRLF as a single character
   - Aligns with `^` and `$` in `mu` mode
+- When not in `u` or `v` mode, `\R` will continue to match the literal character `R`.
 
-- In `v` mode, `\R` is equivalent to the following pattern (except that a failed match performs no backtracking):
-  ```re
-  (?:\r\n?|(?<!=\r)\n|[\x0B-\x0C\x85\u{2028}\u{2029}])
-  ```
-  - Treats CRLF as a single character per UTS#18
-  - Aligns with `^` and `$` in `mv` mode
-  - See https://github.com/tc39/proposal-regexp-set-notation for more information about `v` mode
+> NOTE: The above example uses atomic groups `(?>)` to prevent backtracking when matching `\r\n?`. Atomic groups is proposed [here](https://github.com/rbuckton/proposal-regexp-atomic-operators).
 
 <!--#endregion:semantics-->
 
@@ -103,6 +97,11 @@ const lines = fs.readFileSync("file.txt", "utf8").split(/\R/ug);
 
 * [Title](url)   -->
 <!--#endregion:references-->
+
+# History
+
+- October 28, 2021 &mdash; Proposed for Stage 1 ([slides](https://1drv.ms/p/s!AjgWTO11Fk-TkfoQmhSpEYYM0spVqg?e=zsP6g4))
+  - Outcome: Advanced to Stage 1
 
 <!--#region:todo-->
 # TODO
