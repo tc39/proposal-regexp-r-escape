@@ -117,8 +117,8 @@ The following is a high-level list of tasks to progress through each stage of th
 
 ### Stage 2 Entrance Criteria
 
-* [ ] [Initial specification text][Specification].  
-* [ ] [Transpiler support][Transpiler] (_Optional_).  
+* [x] [Initial specification text][Specification].  
+* [ ] ~~[Transpiler support][Transpiler] (_Optional_).~~  
 
 ### Stage 3 Entrance Criteria
 
@@ -143,7 +143,7 @@ The following is a high-level list of tasks to progress through each stage of th
 [Prose]: #motivations
 [Examples]: #examples
 [API]: #api
-[Specification]: https://rbuckton.github.io/proposal-regexp-r-escape
+[Specification]: https://tc39.es/proposal-regexp-r-escape
 
 [Transpiler]: #todo
 [Stage3ReviewerSignOff]: #todo

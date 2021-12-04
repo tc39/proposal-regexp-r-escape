@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "description": "Regular Expression '\\R' Escape for ECMAScript",
-  "homepage": "https://github.com/rbuckton/proposal-regexp-r-escape#readme",
+  "homepage": "https://github.com/tc39/proposal-regexp-r-escape#readme",
   "author": {
     "name": "Ron Buckton",
     "email": "ron.buckton@microsoft.com"
